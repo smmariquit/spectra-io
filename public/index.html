@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Spectra.io — A cooperative survival .io game. Match wavelengths, dodge rays, charge the prism, and survive the Big Heat Death together.">
+  <title>Spectra.io — Cooperative Survival</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Title / Lobby Screen -->
+  <div id="menu-screen">
+    <canvas id="bg-canvas"></canvas>
+    <div id="menu-content">
+      <div id="title-glow"></div>
+      <h1 id="game-title">SPECTRA</h1>
+      <p id="tagline">"Rage, rage against the dying of the light!"</p>
+
+      <div id="name-row">
+        <input type="text" id="name-input" placeholder="Enter your name" maxlength="16" autocomplete="off" spellcheck="false">
+      </div>
+
+      <button id="play-btn" class="btn-primary">
+        <span class="btn-icon">▶</span> PLAY
+      </button>
+
+      <div id="lobby-status" class="hidden">
+        <div class="pulse-ring"></div>
+        <span id="lobby-text">Waiting for players...</span>
+      </div>
+
+      <div id="lobby-players" class="hidden"></div>
+
+      <div id="how-to-play">
+        <h3>How to Play</h3>
+        <div class="controls-grid">
+          <div class="control-item"><kbd>WASD</kbd><span>Move</span></div>
+          <div class="control-item"><kbd>Q</kbd><span>Cycle Color</span></div>
+          <div class="control-item"><kbd>SPACE</kbd><span>Flare</span></div>
+        </div>
+        <ul>
+          <li><strong style="color:#ff3c3c">Luminance</strong> is your HP — match ray colors to heal, mismatch = damage</li>
+          <li>At <strong>0 luminance</strong> you go grayscale. A teammate must <strong>revive</strong> you.</li>
+          <li>If all players are down → <strong style="color:#ff6040">Big Heat Death</strong></li>
+          <li>Stand near the <strong style="color:#64c8ff">Prism</strong> to charge extraction → 100% = <strong style="color:#3cff78">WIN</strong></li>
+        </ul>
+      </div>
+
+      <footer id="credits">CMSC 137 — Mariquit, Ortiz, Plaza</footer>
+    </div>
+  </div>
+
+  <!-- Game Canvas -->
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD Overlay -->
+  <div id="hud" class="hidden">
+    <div id="hud-top-left">
+      <div id="extraction-bar">
+        <div id="extraction-fill"></div>
+        <span id="extraction-text">Extraction: 0%</span>
+      </div>
+      <div id="wave-counter">Wave 0</div>
+    </div>
+    <div id="hud-top-right">
+      <div id="player-stats"></div>
+    </div>
+    <div id="hud-bottom">
+      <div id="my-stats">
+        <div id="my-lum-bar">
+          <div id="my-lum-fill"></div>
+          <span id="my-lum-text">100</span>
+        </div>
+        <div id="my-color-indicator"></div>
+        <div id="my-flare-cd"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over / Win Overlay -->
+  <div id="overlay" class="hidden">
+    <div id="overlay-content">
+      <h2 id="overlay-title"></h2>
+      <p id="overlay-subtitle"></p>
+      <button id="restart-btn" class="btn-primary">PLAY AGAIN</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
