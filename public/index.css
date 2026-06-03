@@ -346,7 +346,7 @@ kbd {
   color: var(--text-dim);
   margin-bottom: 24px;
 }
-#restart-btn { pointer-events: all; }
+
 
 /* ── Utils ──────────────────────────────────────────────────────────────── */
 .hidden { display: none !important; }

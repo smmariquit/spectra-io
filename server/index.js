@@ -381,10 +381,7 @@ function broadcastState(room) {
     wi: room.waveIndex, st: room.state,
   };
 
-  for (const sid of room.playerOrder) {
-    const sock = io.sockets.sockets.get(sid);
-    if (sock) sock.volatile.emit('snap', snap);
-  }
+  io.to(room.id).volatile.emit('snap', snap);
 }
 
 // ── Socket.IO ────────────────────────────────────────────────────────────────
